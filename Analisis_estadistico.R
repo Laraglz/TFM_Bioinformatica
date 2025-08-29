@@ -32,6 +32,10 @@ conteos <- readDGE(archivos, columns = c(1, 2), labels = nombres_muestras)
 head(conteos$counts)
 nrow(conteos) # número de genes del experimento
 
+# Extraer la matriz de conteos y guardar como CSV
+matriz_conteos <- conteos$counts
+write.csv(matriz_conteos, file = "matriz_conteos.csv", row.names = TRUE)
+
 # Instalar la librería de genes del genoma humano
 if(!require("org.Hs.eg.db")) {
   install.packages("org.Hs.eg.dbr")
@@ -298,6 +302,7 @@ p3 <- ggplot(mf, aes(x = reorder(Term, log10p), y = log10p)) +
   theme(panel.grid = element_blank())
 
 print(p3)
+
 
 
 
